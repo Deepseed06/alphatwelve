@@ -3,8 +3,7 @@ import {MobileFooterTabs} from "@/constants"
 import Image from 'next/image'
 const MobileFooter = () => {
   const updatedFooterArr = MobileFooterTabs.slice(0,10);
-  const FooterArray = updatedFooterArr.splice(4,5);
-
+ 
  
   return (
     <div className=' border flex justify-center '>
