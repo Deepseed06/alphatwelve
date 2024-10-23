@@ -28,7 +28,7 @@ import {
 import EventCard from './EventCard'
 
 
-const data = Array.from({ length: 30 }, (_, i) => ({
+const data = Array.from({ length: 30 }, () => ({
   EventName: ["Cloud Innovation Summit", "Future of Fintech Forum", "Web3 Interface Workshop"][Math.floor(Math.random() * 3)],
   Date: ["2024-10-15", "2024-11-05", "2024-11-12", "2024-10-10"] [Math.floor(Math.random() * 3)],
   Speaker: ['Jane Doe', 'Dr. Peter Smith', 'Dr.Aisha', 'Kevin Adams'][Math.floor(Math.random() * 2)],

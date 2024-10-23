@@ -10,7 +10,6 @@ import Image from 'next/image'
 
 const MobileNav = () =>  {
   const [isOpen, setIsOpen] = useState(false)
-  const [collapse, setCollapse] = useState("224px")
   const [isActive, setIsActive] = useState("#8576FF")
 
 
