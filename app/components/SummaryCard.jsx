@@ -7,7 +7,7 @@ const SummaryCard = () => {
         {label: "Total Events", value:'100,000', imgIcon:ArrowUpIcon, percent: '+5.0%' },
         {label: "Active Speakers", value:25, imgIcon:ArrowDownIcon, percent: '-5.0%'},
         {label: "Total Registrations", value:300, imgIcon:ArrowUpIcon, percent: '+5.0%'},
-        {label: "Total Revenue", value:"$500000", imgIcon:ArrowUpIcon, percent: '+5.0%'},
+        {label: "Total Revenue", value:"$500,000", imgIcon:ArrowUpIcon, percent: '+5.0%'},
     ]
   return (
     <div className='grid grid-cols-1 md:grid md:grid-cols-2 lg:grid-cols-4 justify-center items-center'>

@@ -56,9 +56,9 @@ export default function TableWithPagination() {
   return (
     <div className="w-full  lg:container relative mx-auto py-10">
       <Table>
-        <TableHeader className='bg-[#F1F5F9]'>
+        <TableHeader className='bg-[#6A6676]'>
           <TableRow>
-            <div className='flex justify-evenly items-center pt-4 hover:bg-white'>
+            <div className='flex justify-evenly items-center  pt-4'>
 
             <TableHead className="">Event Name</TableHead>
             <TableHead className='text-left hidden lg:block'>Date</TableHead>
@@ -70,7 +70,7 @@ export default function TableWithPagination() {
         <TableBody>
           {currentItems.map((item, index) => (
             <TableRow key={index}>
-              <div className='block lg:hidden'>
+              <div className='flex justify-center overflow-hidden lg:hidden'>
 
         <Accordion type="single" collapsible>
           <AccordionItem className='w-[320px] text-left text-nowrap  ' value="item-1">
@@ -80,12 +80,12 @@ export default function TableWithPagination() {
               {
                 item.Status == 'Completed' ? (
                   
-                  <TableCell ><div className='bg-[#3B82F6] flex items-center justify-evenly 
+                  <TableCell className='p-2' ><div className='bg-[#3B82F6]  flex items-center justify-evenly 
                   text-[#DBEAFE] rounded-full'><span className=
-                  'w-2 rounded-full text-nowrap bg-[#DBEAFE] h-2'></span>{item.Status}</div></TableCell>
-                ) :  <TableCell ><div className='bg-[#D1FAE5] flex items-center 
-                justify-evenly text-[#10B981] rounded-full'>
-                  <span className='w-2 rounded-full text-nowrap 
+                  'w-2 rounded-full text-nowrap mx-2 bg-[#DBEAFE] h-2 '></span>{item.Status}</div></TableCell>
+                ) :  <TableCell className='p-2' ><div className='bg-[#D1FAE5] flex items-center 
+                justify-evenly text-[#10B981]  rounded-full'>
+                  <span className='w-2 mx-2 rounded-full text-nowrap 
                   bg-[#10B981] h-2'></span>{item.Status}</div>
                   </TableCell>
                 

@@ -8,10 +8,10 @@ const EventReg = () => {
             <div>Events Registration per month</div>
             <div className='lg:grid lg:grid-cols-2'>
 
-        <div className='border  lg:w-[500px] lg:h-[375px] lg:mx-8 '>
+        <div className='  lg:w-[500px] lg:h-[375px] lg:mx-8 '>
             <MonthlyChart/>
         </div>
-        <div className='border lg:w-[500px] lg:h-[375px] lg:mx-8'>
+        <div className='w-[310px] lg:w-[500px] lg:h-[375px] lg:mx-8'>
             <Carousel/>
         </div>
         </div>

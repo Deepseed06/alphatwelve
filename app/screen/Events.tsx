@@ -44,9 +44,9 @@ const Events = () => {
             })
           }
         </div>
-          <div className='text-[14px] font-[600] text-left py-[8px]'>Displaying 100 results</div>
+          <div className='text-[14px] font-[600] text-left px-4 py-[8px]'>Displaying 100 results</div>
         
-        <div className='flex items-center justify-between my-2 '>
+        <div className='flex items-center justify-between px-4 my-2 '>
           <div className='text-[14px]'>Sort:</div>
              <Select>
                   <SelectTrigger className="w-[140px] lg:w-full">
@@ -59,7 +59,7 @@ const Events = () => {
                   </SelectContent>
                 </Select>
         </div>
-        <div className='flex items-center justify-between '>
+        <div className='flex items-center justify-between px-4 '>
           <div><MoreVerticalIcon size={20}/></div>
            <Button className='bg-white border hover:bg-transparent text-black'>
             <DownloadIcon/>

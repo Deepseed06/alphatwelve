@@ -1,91 +1,138 @@
 'use client'
 
-import { useState } from 'react'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import Image from 'next/image'
 import {SliderImages} from "@/constants"
+import * as React from 'react'
+import Image from 'next/image'
+import { Card, CardContent } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
+import { ChevronLeft, ChevronRight, Pause, Play  } from "lucide-react"
+
+import useEmblaCarousel from 'embla-carousel-react'
+
+export default function Component() {
+  const [currentIndex, setCurrentIndex] = React.useState(0)
+
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true })
+  const [isPaused, setIsPaused] = React.useState(false)
+  const [api, setApi] = React.useState<any>()
+
+  
+  const onSelect = React.useCallback(() => {
+    if (!emblaApi) return
+    setCurrentIndex(emblaApi.selectedScrollSnap())
+  }, [emblaApi])
+
+  React.useEffect(() => {
+    if (!api) {
+      return
+    }
+
+    api.on("select", onSelect)
+  }, [api, onSelect])
+
+  React.useEffect(() => {
+    if (isPaused) return
+
+    const timer = setInterval(() => {
+      if (api) {
+        api.scrollNext()
+      }
+      
+    }, 5000) 
+
+    return () => clearInterval(timer)
+  }, [api, isPaused])
+  const handlePrevious = React.useCallback(() => {
+    if (api) {
+      api.scrollPrev()
+    }
+  }, [api])
+
+  const handleNext = React.useCallback(() => {
+    if (api) {
+      api.scrollNext()
+    }
+  }, [api])
+
+  const goToSlide = React.useCallback((index: number) => {
+    if (api) {
+      api.scrollTo(index)
+    }
+  }, [api])
 
 
-const Carousel = () => {
-  const [currentIndex, setCurrentIndex] = useState(0)
-
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % SliderImages.length)
-  }
-
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + SliderImages.length) % SliderImages.length)
-  }
-
-
+  React.useEffect(() => {
+    if (!emblaApi) return
+  
+    onSelect()
+    emblaApi.on('select', onSelect)
+    
+    return () => {
+      emblaApi.off('select', onSelect)
+    }
+  }, [emblaApi, onSelect])
 
   return (
-    <div className="relative w-lg max-w-4xl mx-auto overflow-hidden mt-4">
-      
-      <div 
-        className="flex transition-transform duration-500 ease-in-out" 
-        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-      >
-        {SliderImages.map((slide, index) => {
-          return (
-            <div key={index} className="  flex-shrink-0">
-              <div className="relative w-[612px] h-[220px]">
-                <Image
-                  src={slide.image}
-                  alt={slide.alt}
-                  width={375}
-                  height={375}
-                  objectFit="cover"
-                  className='lg:h-[375px]'
-                
-                  priority={index === currentIndex}
-                />
-               <div className="absolute top-[60%] inset-0 bg-gradient-to-t from-black/60 to-transparent flex  p-4">
-                <div className="text-left text-white max-w-2xl">
-                  <h2 className="text-[16px] font-bold mb-2">{slide.title}</h2>
-                  <p className="text-xs">{slide.description}</p>
+    <Card className="w-full max-w-3xl mx-auto ">
+      <CardContent className="p-0">
+        <Carousel setApi={setApi} className="w-full">
+          <CarouselContent>
+            {SliderImages.map((image, index) => (
+              <CarouselItem key={index}>
+                <div className="relative aspect-[3/2] h-64 w-full">
+                  <Image
+                    src={image.image}
+                    alt={image.alt}
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-between p-4">
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      className="h-8 w-8 rounded-full bg-background/80"
+                      onClick={handlePrevious}
+                      aria-label="Previous image"
+                    >
+                      <ChevronLeft className="h-4 w-4" />
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      className="h-8 w-8 rounded-full bg-background/80"
+                      onClick={handleNext}
+                      aria-label="Next image"
+                    >
+                      <ChevronRight className="h-4 w-4" />
+                    </Button>
+                  </div>
+                  <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                    {SliderImages.map((_, idx) => (
+                      <button
+                        key={idx}
+                        className={`w-4 h-2 rounded-lg ${
+                          idx === currentIndex ? 'bg-white' : 'bg-black'
+                        }`}
+                        onClick={() => goToSlide(idx)}
+                        aria-label={`Go to image ${idx + 1}`}
+                        aria-current={idx === currentIndex ? 'true' : 'false'}
+                      />
+                    ))}
+                  </div>
                 </div>
-              </div>
-              </div>
-            </div>
-          )})
-        }
-      </div>
-
-      <Button
-        variant="outline"
-        size="icon"
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 text-white border-white hover:bg-white hover:text-black rounded-full"
-        onClick={prevSlide}
-        aria-label="Previous slide"
-      >
-        <ChevronLeft className="h-6 w-6" />
-      </Button>
-      <Button
-        variant="outline"
-        size="icon"
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 text-white border-white hover:bg-white hover:text-black rounded-full"
-        onClick={nextSlide}
-        aria-label="Next slide"
-      >
-        <ChevronRight className="h-6 w-6" />
-      </Button>
-
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-        {SliderImages.map((_, index) => (
-          <button
-            key={index}
-            className={`w-2 h-2 rounded-full transition-all duration-300 ${
-              index === currentIndex ? 'bg-white w-4' : 'bg-white/50'
-            }`}
-            onClick={() => setCurrentIndex(index)}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
-      </div>
-    </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
+        
+      </CardContent>
+    </Card>
   )
 }
-
-export default Carousel;

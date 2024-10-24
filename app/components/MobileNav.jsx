@@ -22,7 +22,7 @@ const MobileNav = () =>  {
         <div className='p-2'><Logo/></div>
         {
             isOpen ? (
-        <div onClick={toggleNav} className='cursor-pointer'>
+        <div onClick={toggleNav} className='cursor-pointer w-24 h-24'>
             <Image src={CancelIcon} alt='close' width={20} height={20}/>
         </div>
             ):
