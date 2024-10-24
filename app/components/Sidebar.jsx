@@ -5,7 +5,7 @@ import DarkModeToggle from "./DarkModeToggle"
 import { MobileFooterTabs } from '@/constants'
 import Image from 'next/image'
 const Sidebar = () => {
-  const [collapse, setCollapse] = useState("224px")
+  const [collapse, setCollapse] = useState("224")
   const [isActive, setIsActive] = useState("#8576FF")
 
   const collapseSideBar = () => {
@@ -15,6 +15,7 @@ const Sidebar = () => {
     setCollapse("224px")
   }
   
+  console.log(collapse)
   return (
     <div className={`w-[${collapse}] h-[1024px] flex flex-col p-[8px] border  text-[#334155]`}>
         <div>
@@ -27,7 +28,7 @@ const Sidebar = () => {
               <div onClick={() => setIsActive("#8576FF")} className={`w-full flex text-[16px] cursor-pointer active:text-[${isActive}] hover:bg-[#FCF7FF]  p-[8px]  dark:text-white border`} key={item.label}>
                 <div  className='flex flex-1 text-left    my-[4px] relative'>
                 <div className=''><Image src={item.imgUrl} alt={item.label} width={20} height={20}  /></div>
-                <div>{ collapse == "224px" ? <p className={`text-${isActive}  ml-4`}> {item.label} </p> : '' }</div>
+                <div>{ collapse === "224px" && <p className={`text-${isActive}  ml-4`}> {item.label} </p> }</div>
                 <div className=' flex flex-1  items-end justify-end relative'>
 
                 {

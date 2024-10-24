@@ -53,7 +53,7 @@ const MobileNav = () =>  {
               <div onClick={() => setIsActive("#8576FF")} className='w- flex text-[16px] cursor-pointer hover:bg-[#FCF7FF]  p-[8px]  dark:text-white' key={item}>
                 <div  className='flex flex-1 text-left    my-[4px] relative'>
                 <div className=''><Image src={item.imgUrl} alt={item.label} width={20} height={20}  /></div>
-                <div>{ collapse == "224px" ? <p className={`text-${isActive}  ml-4`}> {item.label} </p> : '' }</div>
+                <div><p className={`text-${isActive}  ml-4`}> {item.label} </p></div>
                 <div className=' flex flex-1  items-end justify-end relative'>
 
                 {
@@ -61,10 +61,6 @@ const MobileNav = () =>  {
                   item.label=='Notifications' && <>
                     
                     {
-                      
-                      collapse == "64px" ? ( <p className='w-[8px] h-[8px] rounded-full bg-red-600 align-top absolute  
-                        top-0 right-0 flex text-white justify-center'></p>) :
-                     
                       
                     <p className='w-[25px] h-[25px] p-2 rounded-full bg-red-600 items-center flex text-white 
                     justify-center'> {item.number} </p>
