@@ -20,7 +20,7 @@ const SummaryCard = () => {
                         <h2 className='text-[16px] font-[600] text-[#64748B]'>{item.label}</h2>
                         <div className='flex items-center'>
                         <p className='text-[20px] font-[600]'>{item.value}</p>
-                        <Image src={item.imgIcon} width={20} height={20}/>
+                        <Image src={item.imgIcon} alt='card-image' width={20} height={20}/>
                         {
                             item.label=='Active Speakers' ? (
 

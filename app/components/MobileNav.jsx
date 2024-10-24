@@ -84,7 +84,7 @@ const MobileNav = () =>  {
              
         <DarkModeToggle  />
         <div className='flex p-[8px]'>
-        <Image src={MobileFooterTabs[9].imgUrl} width={32} height={32} className='w-[32px] h-[32px] rounded-ful' />
+        <Image src={MobileFooterTabs[9].imgUrl} alt='' width={32} height={32} className='w-[32px] h-[32px] rounded-ful' />
 
         <div className='flex flex-col'>
         <p className='dark:text-white ml-4 text-[16px]'>Rudra Devi</p>
