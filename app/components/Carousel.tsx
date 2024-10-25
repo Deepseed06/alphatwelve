@@ -99,13 +99,15 @@ export default function Carousel() {
           </div>
         </div>
         <div className="p-4 absolute -mt-36  ">
+          <div className='pr-16'>
           <p className='text-white'>Latest News & Updates</p>
           <p className="text-left text-xs text-white " aria-live="polite">
           Turpis interdum nunc varius ornare dignissim pretium.
-           Massa ornare quis aliquet sed <br />vitae. Sed velit nisi, 
+           Massa ornare quis aliquet sed vitae. Sed velit nisi, 
            fermentum erat. Fringilla purus, erat fringilla 
           tincidunt quisque non. Pellentesque in ut tellus.
           </p>
+          </div>
         </div>
       </CardContent>
     </Card>
