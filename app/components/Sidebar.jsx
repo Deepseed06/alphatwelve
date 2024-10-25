@@ -4,20 +4,24 @@ import Logo from "./Logo"
 import DarkModeToggle from "./DarkModeToggle"
 import { MobileFooterTabs } from '@/constants'
 import Image from 'next/image'
+import { cn } from '@/lib/utils'
 const Sidebar = () => {
   const [collapse, setCollapse] = useState("224px")
   const [isActive, setIsActive] = useState("#8576FF")
 
-  const collapseSideBar = () => {
-    setCollapse("64px")
-  }
-  const restoreSideBar = () => {
-    setCollapse("224px")
-  }
+  
+    const collapseSideBar = () => {
+      setCollapse("64px")
+    }
+    const restoreSideBar = () => {
+      setCollapse("224px")
+    }
+    if(!collapse) return
+  
   
  
   return (
-    <div className={`w-[${collapse}] h-[1024px] flex flex-col p-[8px] border  text-[#334155]`}>
+    <div className={cn( 'h-[1024px] flex flex-col p-[8px] border  text-[#334155]', collapse=='224px' ? 'w-[224px]':'w-[64px]')}>
         <div>
         <Logo collapse={collapse}/>
         </div>
