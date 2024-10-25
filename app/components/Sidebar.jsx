@@ -25,7 +25,7 @@ const Sidebar = () => {
           MobileFooterTabs.slice(0,7).map((item) => {
             return(
               
-              <div onClick={() => setIsActive("#8576FF")} className={`w-full flex text-[16px] 
+              <div onClick={() => setIsActive("#8576FF")} className={`w-auto flex text-[16px] 
                 cursor-pointer active:text-[${isActive}] 
               hover:bg-[#FCF7FF]  p-[8px] dark:hover:bg-[#8576FF]  
               dark:text-white border`} key={item.index}>
