@@ -56,7 +56,7 @@ export default function TableWithPagination() {
   return (
     <div className="w-full  lg:container relative mx-auto py-10">
       <Table>
-        <TableHeader className='bg-[#6A6676]'>
+        <TableHeader className='dark:text-black bg-[#6A6676]'>
           <TableRow>
             <div className='flex justify-evenly items-center  pt-4'>
 
@@ -131,6 +131,7 @@ export default function TableWithPagination() {
         <PaginationContent className='absolue left-4 '>
           <PaginationItem>
             <PaginationPrevious
+            className='rounded-full'
               href="#"
               onClick={(e) => {
                 e.preventDefault()

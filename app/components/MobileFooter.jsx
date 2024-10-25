@@ -4,7 +4,7 @@ import Image from 'next/image'
 const MobileFooter = () => {
   const updatedFooterArr = MobileFooterTabs.slice(0,10);
  const footerArray = updatedFooterArr.splice(4,5)
- 
+ console.log(footerArray)
   return (
     <div className=' border flex justify-center '>
         {

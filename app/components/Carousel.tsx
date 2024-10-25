@@ -1,6 +1,5 @@
 'use client'
 
-import {SliderImages} from "@/constants"
 import * as React from 'react'
 import Image from 'next/image'
 import { Card, CardContent } from "@/components/ui/card"
@@ -9,46 +8,32 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel"
-import { ChevronLeft, ChevronRight, Pause, Play  } from "lucide-react"
 
-import useEmblaCarousel from 'embla-carousel-react'
+} from "@/components/ui/carousel"
+import { ChevronLeft, ChevronRight } from "lucide-react"
+import { SliderImages } from '@/constants'
+
+
+
 
 export default function Component() {
   const [currentIndex, setCurrentIndex] = React.useState(0)
-
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true })
-  const [isPaused, setIsPaused] = React.useState(false)
   const [api, setApi] = React.useState<any>()
 
-  
-  const onSelect = React.useCallback(() => {
-    if (!emblaApi) return
-    setCurrentIndex(emblaApi.selectedScrollSnap())
-  }, [emblaApi])
+  const onSelect = React.useCallback((selectedIndex: number) => {
+    console.log(selectedIndex)
+    setCurrentIndex(Math.min(Math.max(selectedIndex, 0), SliderImages.length - 1))
+  }, [])
+ 
 
   React.useEffect(() => {
     if (!api) {
       return
     }
 
-    api.on("select", onSelect)
+    api.on("selectedScrollSnap", onSelect)
   }, [api, onSelect])
 
-  React.useEffect(() => {
-    if (isPaused) return
-
-    const timer = setInterval(() => {
-      if (api) {
-        api.scrollNext()
-      }
-      
-    }, 5000) 
-
-    return () => clearInterval(timer)
-  }, [api, isPaused])
   const handlePrevious = React.useCallback(() => {
     if (api) {
       api.scrollPrev()
@@ -66,32 +51,20 @@ export default function Component() {
       api.scrollTo(index)
     }
   }, [api])
-
-
-  React.useEffect(() => {
-    if (!emblaApi) return
-  
-    onSelect()
-    emblaApi.on('select', onSelect)
-    
-    return () => {
-      emblaApi.off('select', onSelect)
-    }
-  }, [emblaApi, onSelect])
-
+console.log(currentIndex)
   return (
-    <Card className="w-full max-w-3xl mx-auto ">
+    <Card className="w-full max-w-3xl mx-auto">
       <CardContent className="p-0">
         <Carousel setApi={setApi} className="w-full">
           <CarouselContent>
             {SliderImages.map((image, index) => (
               <CarouselItem key={index}>
-                <div className="relative aspect-[3/2] h-64 w-full">
+                <div className="relative aspect-[3/2] lg:h-[375px] h-[310px] w-full">
                   <Image
                     src={image.image}
                     alt={image.alt}
                     fill
-                    className="object-cover"
+                    className="object-cover opacity-90"
                   />
                   <div className="absolute inset-0 flex items-center justify-between p-4">
                     <Button
@@ -117,13 +90,14 @@ export default function Component() {
                     {SliderImages.map((_, idx) => (
                       <button
                         key={idx}
-                        className={`w-4 h-2 rounded-lg ${
-                          idx === currentIndex ? 'bg-white' : 'bg-black'
+                        className={`w-2 h-2 rounded-lg ${
+                          idx === currentIndex ? 'bg-primary' : 'bg-background/80'
                         }`}
                         onClick={() => goToSlide(idx)}
                         aria-label={`Go to image ${idx + 1}`}
                         aria-current={idx === currentIndex ? 'true' : 'false'}
                       />
+                      
                     ))}
                   </div>
                 </div>
@@ -131,7 +105,15 @@ export default function Component() {
             ))}
           </CarouselContent>
         </Carousel>
-        
+        <div className="p-4 absolute -mt-36 ">
+          <p className='text-white'>Latest News & Updates</p>
+          <p className="text-left text-xs text-white " aria-live="polite">
+          Turpis interdum nunc varius ornare dignissim pretium.
+           Massa ornare quis aliquet sed vitae. Sed velit nisi, 
+           fermentum erat. Fringilla purus, erat fringilla 
+          tincidunt quisque non. Pellentesque in ut tellus.
+          </p>
+        </div>
       </CardContent>
     </Card>
   )
