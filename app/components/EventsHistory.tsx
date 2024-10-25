@@ -54,23 +54,26 @@ export default function TableWithPagination() {
   }
 
   return (
-    <div className="w-full  lg:container relative mx-auto py-10">
+    <div className=" w-full lg:container relative mx-auto py-10">
+       {
+        showModal && <EventCard setShowModal={setShowModal} />
+      }
       <Table>
         <TableHeader className='dark:text-black bg-[#6A6676]'>
           <TableRow>
-            <div className='flex justify-evenly items-center  pt-4'>
+            <div className='flex justify-between items-center  pt-4'>
 
-            <TableHead className="">Event Name</TableHead>
-            <TableHead className='text-left hidden lg:block'>Date</TableHead>
-            <TableHead className='text-left hidden lg:block'>Speaker</TableHead>
-            <TableHead className="text-left ">Status</TableHead>
+            <TableHead className="text-white">Event Name</TableHead>
+            <TableHead className='text-white text-center hidden lg:block'>Date</TableHead>
+            <TableHead className='text-white text-center hidden lg:block'>Speaker</TableHead>
+            <TableHead className="text-white ">Status</TableHead>
             </div>
           </TableRow>
         </TableHeader>
         <TableBody>
           {currentItems.map((item, index) => (
             <TableRow key={index}>
-              <div className='flex justify-center overflow-hidden lg:hidden'>
+              <div className='flex items-start overflow-hidden lg:hidden'>
 
         <Accordion type="single" collapsible>
           <AccordionItem className='w-[320px] text-left text-nowrap  ' value="item-1">
@@ -91,7 +94,7 @@ export default function TableWithPagination() {
                 
               }
               </AccordionTrigger>
-            <AccordionContent className='border w-[320px] '>
+            <AccordionContent className='w-[320px] '>
             <div onClick={() => setShowModal(true)} className='flex  text-center justify-between items-center'>
             <TableCell className=' lg:block'>{item.Date}</TableCell>
             <TableCell className=' lg:block'>{item.Speaker}</TableCell>
@@ -100,7 +103,7 @@ export default function TableWithPagination() {
           </AccordionItem>
        </Accordion>
               </div>
-              <div className='hidden lg:flex lg:justify-between lg:items-center lg:text-left'>
+              <div onClick={() => setShowModal(true)} className='hidden lg:flex lg:justify-between lg:items-center lg:text-left'>
               <TableCell >{item.EventName}</TableCell>
               <TableCell className=' lg:block'>{item.Date}</TableCell>
               <TableCell className=' lg:block'>{item.Speaker}</TableCell>
@@ -123,9 +126,8 @@ export default function TableWithPagination() {
           ))}
         </TableBody>
       </Table>
-      {
-        showModal && <EventCard/>
-      }
+     
+     
 
       <Pagination className="flex justify-start mt-4">
         <PaginationContent className='absolue left-4 '>

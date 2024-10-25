@@ -1,8 +1,14 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import CancelIcon from "../../public/icons/cancel.png"
 import { Button } from "./ui/button"
-import Image from "next/image"
+
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog"
+import { X } from "lucide-react"
 
 interface TeamMember {
   name: string
@@ -18,18 +24,21 @@ const teamMembers: TeamMember[] = [
   { name: "Ethan Hunt", role: "Sales", avatar: "/placeholder.svg?height=32&width=32" },
 ]
 
-const EventCard = () => {
+const EventCard = ({setShowModal}) => {
   return (
-    <Card className="w-[320px] absolute top-auto z-10  px-4 py-8 border shadow-slate-600 max-w-md mx-auto">
-      <CardHeader>
+    <Dialog open={setShowModal}  >
+      <DialogContent className="sm:max-w-md">
+      <DialogHeader>
         <div className="flex justify-between">
-        <CardTitle>Event Name</CardTitle>
-        <Image src={CancelIcon}   alt="cancel" width={30} height={20} className="cursor-pointer"/>
+        <DialogTitle>Event Name</DialogTitle>
+        <X onClick={() => setShowModal(false)} className="dark:text-black bg-white shadow-lg z-10 w-6 h-6 rounded-full"/>
         </div>
-        <CardDescription>Event Date</CardDescription>
-        <CardDescription>Event Description</CardDescription>
-      </CardHeader>
-      <CardContent>
+        <div className="text-left">
+        <DialogDescription>Event Date</DialogDescription>
+        <DialogDescription>Event Description</DialogDescription>
+        </div>
+      </DialogHeader>
+      
         <div className="flex flex-col space-y-4">
           <div className="flex -space-x-2 overflow-hidden">
             {teamMembers.map((member, index) => (
@@ -43,12 +52,13 @@ const EventCard = () => {
           3 Guest Speakers: Speaker name A, Speaker name B, Speaker name C.
           300 Attendees
           </div>
-          <Button className="bg-white text-black border hover:shadow-lg hover:bg-white ">Edit</Button>
+          <Button onClick={() => setShowModal(false)} className="bg-white text-black  hover:shadow-lg hover:bg-white ">Edit</Button>
           <Button className="bg-[#F43F5E] hover:shadow-lg hover:bg-[#F43F5E]">Delete</Button>
           <Button className="bg-[#8576FF] hover:shadow-lg hover:bg-[#8575FF]">Mark as Completed</Button>
         </div>
-      </CardContent>
-    </Card>
+        
+      </DialogContent>
+    </Dialog>
   )
 }
 

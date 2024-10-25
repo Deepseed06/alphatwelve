@@ -19,7 +19,7 @@ const HomeLayout = ({children}: {children:ReactNode}) => {
             <div className='hidden lg:block'><Sidebar/></div>
             <section className='flex flex-col lg:flex-row  relative w-full h-screen '>
             <div className='lg:hidden'><MobileNav/></div>
-                <div className='border px-[16px]  '>
+                <div className=' px-[16px]  '>
                     {children}
                 </div>
                 <div className=' px-[16px] block sm:hidden'>

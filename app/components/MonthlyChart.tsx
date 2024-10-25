@@ -35,11 +35,11 @@ const chartConfig = {
 
 function MonthlyChart() {
   return (
-    <Card className="w-[310px] lg:w-[480px] h-[375px]">
+    <Card className="w-[310px] lg:w-[480px] h-[310px]">
       <CardContent>
 
-        <ChartContainer className="w-[310px] lg:w-[480px] h-[260px] lg:h-[375px]"  config={chartConfig}>
-          <BarChart accessibilityLayer data={chartData}>
+        <ChartContainer className="w-[310px] lg:w-[480px] h-[260px] lg:h-[310px]"  config={chartConfig}>
+          <BarChart  accessibilityLayer data={chartData}>
             <CartesianGrid  />
             <XAxis
               dataKey="month"

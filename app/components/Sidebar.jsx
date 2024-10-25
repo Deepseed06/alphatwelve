@@ -25,7 +25,10 @@ const Sidebar = () => {
           MobileFooterTabs.slice(0,7).map((item) => {
             return(
               
-              <div onClick={() => setIsActive("#8576FF")} className={`w-full flex text-[16px] cursor-pointer active:text-[${isActive}] hover:bg-[#FCF7FF]  p-[8px] dark:hover:bg-[#8576FF]  dark:text-white border`} key={item.index}>
+              <div onClick={() => setIsActive("#8576FF")} className={`w-full flex text-[16px] 
+                cursor-pointer active:text-[${isActive}] 
+              hover:bg-[#FCF7FF]  p-[8px] dark:hover:bg-[#8576FF]  
+              dark:text-white border`} key={item.index}>
                 <div  className='flex flex-1 text-left    my-[4px] relative'>
                 <div className=''><Image src={item.imgUrl} alt={item.label} width={20} height={20}  /></div>
                 <div>{ collapse == "224px" && <p className={`text-${isActive}  ml-4`}> {item.label} </p> }</div>
