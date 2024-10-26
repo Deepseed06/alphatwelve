@@ -64,8 +64,8 @@ export default function TableWithPagination() {
             <div className='flex justify-between items-center  pt-4'>
 
             <TableHead className="text-white">Event Name</TableHead>
-            <TableHead className='text-white text-center hidden lg:block'>Date</TableHead>
-            <TableHead className='text-white text-center hidden lg:block'>Speaker</TableHead>
+            <TableHead className='text-white text-center hidden md:block lg:block'>Date</TableHead>
+            <TableHead className='text-white text-center hidden md:block lg:block'>Speaker</TableHead>
             <TableHead className="text-white ">Status</TableHead>
             </div>
           </TableRow>
@@ -73,7 +73,7 @@ export default function TableWithPagination() {
         <TableBody>
           {currentItems.map((item, index) => (
             <TableRow key={index}>
-              <div className='flex items-start overflow-hidden lg:hidden'>
+              <div className='flex items-start overflow-hidden md:hidden lg:hidden'>
 
         <Accordion type="single" collapsible>
           <AccordionItem className='w-[320px] text-left text-nowrap  ' value="item-1">
@@ -103,10 +103,11 @@ export default function TableWithPagination() {
           </AccordionItem>
        </Accordion>
               </div>
-              <div onClick={() => setShowModal(true)} className='hidden lg:flex lg:justify-between lg:items-center lg:text-left'>
+              <div onClick={() => setShowModal(true)} className='hidden md:flex md:justify-between 
+              md:items-center md:text-left lg:flex lg:justify-between lg:items-center lg:text-left'>
               <TableCell >{item.EventName}</TableCell>
-              <TableCell className=' lg:block'>{item.Date}</TableCell>
-              <TableCell className=' lg:block'>{item.Speaker}</TableCell>
+              <TableCell className='md:block lg:block'>{item.Date}</TableCell>
+              <TableCell className='md:block lg:block'>{item.Speaker}</TableCell>
              {
                item.Status == 'Completed' ? (
                  

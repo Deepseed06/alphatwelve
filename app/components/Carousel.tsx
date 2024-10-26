@@ -55,7 +55,7 @@ export default function Carousel() {
           <div className="flex">
             {SliderImages.map((image, index) => (
               <div key={index} className="flex-[0_0_100%] min-w-0">
-                <div className="relative aspect-[3/2] w-full">
+                <div className="relative aspect-[3/2] w-full md:h-[275px]">
                   <Image
                     src={image.image}
                     alt={image.alt}
